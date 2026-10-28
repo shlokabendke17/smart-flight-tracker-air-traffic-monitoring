@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "author": "Flight Tracker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 50, "left": -230, "attrs": {} },
+    { "type": "wokwi-ili9341", "id": "tft", "top": 0, "left": 100, "attrs": {} },
+    { "type": "wokwi-ky-040", "id": "encoder", "top": 280, "left": -80, "attrs": {} },
+    {
+      "type": "chip-gps",
+      "id": "gps",
+      "top": 370,
+      "left": -230,
+      "attrs": { "latitude": "16.9902", "longitude": "73.3120", "fix": "1" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:3V3", "tft:VCC", "red", [] ],
+    [ "esp:GND.1", "tft:GND", "black", [] ],
+    [ "esp:5", "tft:CS", "green", [] ],
+    [ "esp:2", "tft:D/C", "blue", [] ],
+    [ "esp:23", "tft:MOSI", "purple", [] ],
+    [ "esp:18", "tft:SCK", "yellow", [] ],
+    [ "esp:19", "tft:MISO", "cyan", [] ],
+    [ "esp:3V3", "encoder:VCC", "red", [] ],
+    [ "esp:GND.2", "encoder:GND", "black", [] ],
+    [ "esp:32", "encoder:CLK", "green", [] ],
+    [ "esp:33", "encoder:DT", "blue", [] ],
+    [ "esp:25", "encoder:SW", "orange", [] ],
+    [ "esp:3V3", "gps:VCC", "red", [] ],
+    [ "esp:GND.3", "gps:GND", "black", [] ],
+    [ "gps:TX", "esp:16", "purple", [] ],
+    [ "gps:RX", "esp:17", "blue", [] ]
+  ],
+  "dependencies": {}
+}
